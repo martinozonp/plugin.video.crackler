@@ -182,7 +182,7 @@ elif mode[0] == 'tv_folder':
     xbmcplugin.endOfDirectory(addon_handle)
 
 elif mode[0] == 'play_video':
-    args_ar = urlparse.parse_qs(urlparse.urlparse(sys.argv[0]+sys.argv[2]).query)
+    args_ar = urlparse.parse_qs(sys.argv[2][1:]) 
     retrieve_play_url(args_ar['v_id'][0])
 elif mode[0] == 'view_episodes':
     add_sort_methods(1)
@@ -190,7 +190,7 @@ elif mode[0] == 'view_episodes':
     jsonurl = urllib2.urlopen(tv_json_url)
     tv_map = json.loads(jsonurl.read())
 
-    args_ar = urlparse.parse_qs(urlparse.urlparse(sys.argv[0]+sys.argv[2]).query)
+    args_ar = urlparse.parse_qs(sys.argv[2][1:]) 
     jsonurl = urllib2.urlopen(channel_detail_url % (args_ar['v_id'][0]))
     channel_detail_map = json.loads(jsonurl.read())
 
